@@ -1,0 +1,11 @@
+{{ set currentUrl = page.url }}
+{{ set sortedPages = [...collections.attack].sort((a, b) => {
+  // Sort by order
+  return (a.data.order - b.data.order);
+}) }}
+
+<ul role="list">
+{{ for link of sortedPages }}
+<li><a {{ if (currentUrl === link.url) }}aria-current="page"{{ /if }} href="{{ link.url }}">{{ link.data.slug }}</a></li>
+{{ /for }}
+</ul>
